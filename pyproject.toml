@@ -10,11 +10,17 @@ readme = "README.md"
 authors = [
   { name = "Steffen Freisinger", email = "firstname.lastname@gmail.com" }
 ]
-license = { text = "MIT" }
+license = "MIT"
 dependencies = [
+  "unsloth==2025.2.4",
+  "unsloth-zoo==2025.2.3",
   "torch==2.6.0",
   "transformers==4.46.3",
-  "unsloth",
   "scikit-learn==1.7.0",
   "segeval==2.0.11",
 ]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["toc_llm"]
+exclude = ["models"]

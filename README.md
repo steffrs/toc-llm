@@ -4,10 +4,15 @@ Code repository for the paper
 "Towards Multi-Level Transcript Segmentation: LoRA Fine-Tuning for Table-of-Contents Generation"
 (Interspeech 2025).
 
+## Setup
+Create a new environment (python=3.12) and install the `toc_llm` package including all dependencies:
+```commandline
+python -m pip install .
+```
 
 ## Inference
 To create a table-of-contents for a text file, use the following command in python:
-```bash
+```commandline
 python create_toc.py -i /path/to/file.txt
 ```
 You can provide the following arguments:

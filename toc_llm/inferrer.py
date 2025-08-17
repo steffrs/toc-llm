@@ -2,9 +2,9 @@ from dataclasses import dataclass
 import os
 import gc
 
+from unsloth import FastLanguageModel
 import torch
 from transformers import AutoTokenizer
-from unsloth import FastLanguageModel
 
 from toc_llm.utils import load_json_data
 from toc_llm.data.toc import (
