@@ -2,10 +2,6 @@ import argparse
 import os
 import json
 from dataclasses import dataclass, asdict
-import pickle
-import gc
-
-import torch
 
 from transformers import (
     TrainingArguments,

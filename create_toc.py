@@ -35,7 +35,7 @@ def main():
         "-i", "--input-file", type=str, required=True,
         help="Input text file to create table-of-contents for. Expected format: one sentence per line."
     )
-    parser.add_argument("-c", "--checkpoint", type=str, required=True,
+    parser.add_argument("-c", "--checkpoint", type=str,
                         default="./models/pre-trained_on_wiki-727", help="Directory containing the model checkpoint.")
     parser.add_argument("-o", "--output-file", type=str, required=False, default=None,
                         help="Output text file to save the generated table-of-contents. "

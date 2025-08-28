@@ -3,13 +3,7 @@ import os
 import json
 from dataclasses import dataclass, asdict
 
-import torch
-
-from transformers import (
-    TrainingArguments,
-    EarlyStoppingCallback,
-)
-
+from transformers import TrainingArguments
 from unsloth import is_bfloat16_supported
 from trl import SFTTrainer
 

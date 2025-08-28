@@ -6,8 +6,8 @@ from unsloth import FastLanguageModel
 import torch
 from transformers import AutoTokenizer
 
-from toc_llm.utils import load_json_data
-from toc_llm.data.toc import (
+from .utils import load_json_data
+from .data.toc import (
     create_messages,
     TableOfContents,
     sentences_to_llm_format,

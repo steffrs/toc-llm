@@ -1,19 +1,11 @@
 from __future__ import annotations
 import json
-from typing import List, Optional, Dict, Tuple
-import re
+from typing import List, Optional, Dict
 
 import torch
 from pydantic import BaseModel, conint, conlist
 
-from topic_segmentation.data.load_data import (
-    SentencesPlus, Sentence, load_sentences_from_filepaths,
-    compute_speech_and_silence_intervals, search_start_in_interval
-)
-from topic_segmentation.data.load_data import Topic as TopicData
-
-
-from toc_llm.prompts import SYSTEM_PROMPT, SYSTEM_PROMPT_PAUSE, USER_PROMPT, FEW_SHOT_EXTENSION
+from ..prompts import SYSTEM_PROMPT, SYSTEM_PROMPT_PAUSE, USER_PROMPT, FEW_SHOT_EXTENSION
 
 
 def load_datasets() -> tuple[TocDataset, TocDataset, TocDataset]:

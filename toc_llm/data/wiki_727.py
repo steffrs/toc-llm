@@ -3,7 +3,6 @@ import os
 from typing import Generator
 from dataclasses import dataclass
 from tqdm import tqdm
-import pickle
 
 import torch
 from transformers import AutoTokenizer

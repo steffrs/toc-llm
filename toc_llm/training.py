@@ -1,4 +1,3 @@
-import argparse
 import os
 import json
 from dataclasses import dataclass
@@ -6,13 +5,13 @@ from dataclasses import dataclass
 from unsloth import FastLanguageModel
 import torch
 
-from toc_llm.utils import count_parameters, load_json_data, get_linear_segmentation
-from toc_llm.inferrer import TocLlmInferrer
-from toc_llm.data.toc import (
+from .utils import count_parameters, load_json_data, get_linear_segmentation
+from .inferrer import TocLlmInferrer
+from .data.toc import (
     create_messages,
     toc_to_label_dict,
 )
-from toc_llm.eval import hierarchical_metric, Metrics
+from .eval import hierarchical_metric, Metrics
 
 
 @dataclass

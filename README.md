@@ -5,9 +5,9 @@ Code repository for the paper
 (Interspeech 2025).
 
 ## Setup
-Create a new environment (python=3.12) and install the `toc_llm` package including all dependencies:
+Create a new environment (python=3.12) and install the dependencies:
 ```commandline
-python -m pip install .
+python -m pip install -r requirements.txt
 ```
 
 ## Inference
