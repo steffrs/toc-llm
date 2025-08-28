@@ -21,3 +21,17 @@ You can provide the following arguments:
   Default is `models/pre-trained_on_wiki-727`.
 - `-o` or `--output-file` (Optional): Path to the output file where the table-of-contents will be written to. 
   If not provided, the output will be printed to the console. Default is `None`.
+
+## Citation
+If you find this code useful, please cite our paper:
+```bibtex
+@inproceedings{freisinger25_interspeech,
+  title     = {{Towards Multi-Level Transcript Segmentation: LoRA Fine-Tuning for Table-of-Contents Generation}},
+  author    = {{Steffen Freisinger and Philipp Seeberger and Thomas Ranzenberger and Tobias Bocklet and Korbinian Riedhammer}},
+  year      = {{2025}},
+  booktitle = {{Interspeech 2025}},
+  pages     = {{276--280}},
+  doi       = {{10.21437/Interspeech.2025-2792}},
+  issn      = {{2958-1796}},
+}
+```
