@@ -1,0 +1,18 @@
+{
+  "seed": 0,
+  "wiki_727_max_tokens": null,
+  "max_samples": null,
+  "batch_size": 1,
+  "accumulate_steps": 16,
+  "learning_rate": 5e-05,
+  "warmup_steps": 1000,
+  "model_id": "unsloth/Mistral-Nemo-Instruct-2407-bnb-4bit",
+  "rank": 16,
+  "lora_dropout": 0.05,
+  "lora_alpha": 32,
+  "add_pause": false,
+  "max_length": null,
+  "logging_steps": 200,
+  "save_steps": 200,
+  "from_checkpoint": null
+}

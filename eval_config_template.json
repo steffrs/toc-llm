@@ -1,0 +1,5 @@
+{
+  "wiki_727_dir": "/path/to/wiki_727",
+  "output_dir": "/path/to/output",
+  "checkpoint": "/path/to/checkpoint"
+}
