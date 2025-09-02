@@ -1,7 +1,7 @@
 # toc-llm
 
 Code repository for the paper
-"Towards Multi-Level Transcript Segmentation: LoRA Fine-Tuning for Table-of-Contents Generation"
+[Towards Multi-Level Transcript Segmentation: LoRA Fine-Tuning for Table-of-Contents Generation](https://www.isca-archive.org/interspeech_2025/freisinger25_interspeech.pdf)
 (Interspeech 2025).
 
 
