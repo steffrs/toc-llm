@@ -10,7 +10,7 @@ from transformers import AutoTokenizer
 
 def load_datasets(dataset_root: str, model_id: str, max_seq_len: int | None, max_samples: int | None,
                   load_train: bool = True, load_dev: bool = True, load_test: bool = True,
-                  ) -> tuple[Wiki727Dataset, Wiki727Dataset, Wiki727Dataset]:
+                  ) -> tuple[Wiki727kDataset, Wiki727kDataset, Wiki727kDataset]:
     if max_seq_len is not None:
         tokenizer = AutoTokenizer.from_pretrained(model_id)
     else:
@@ -18,19 +18,19 @@ def load_datasets(dataset_root: str, model_id: str, max_seq_len: int | None, max
     if load_train:
         print("Loading TRAIN dataset...", flush=True)
         train_dir = os.path.join(dataset_root, "train")
-        dataset_train = Wiki727Dataset(train_dir, max_seq_len, tokenizer, max_samples)
+        dataset_train = Wiki727kDataset(train_dir, max_seq_len, tokenizer, max_samples)
     else:
         dataset_train = None
     if load_dev:
         print("Loading DEV dataset...", flush=True)
         dev_dir = os.path.join(dataset_root, "dev")
-        dataset_dev = Wiki727Dataset(dev_dir, max_seq_len, tokenizer, max_samples)
+        dataset_dev = Wiki727kDataset(dev_dir, max_seq_len, tokenizer, max_samples)
     else:
         dataset_dev = None
     if load_test:        
         print("Loading TEST dataset...", flush=True)
         test_dir = os.path.join(dataset_root, "test")
-        dataset_test = Wiki727Dataset(test_dir, max_seq_len, tokenizer, max_samples)
+        dataset_test = Wiki727kDataset(test_dir, max_seq_len, tokenizer, max_samples)
     else:
         dataset_test = None
     print(f"\nNumber of samples:\n"
@@ -254,9 +254,9 @@ def add_initial_subtopics_if_missing(topics: list[dict]) -> list[dict]:
     return topics
 
 
-class Wiki727Dataset(torch.utils.data.Dataset):
+class Wiki727kDataset(torch.utils.data.Dataset):
     """
-    Torch Dataset to load topic-annotated Wiki727 data.
+    Torch Dataset to load topic-annotated Wiki727k data.
     """
 
     def __init__(self, data_path: str, max_seq_len: int | None = None,
@@ -271,7 +271,7 @@ class Wiki727Dataset(torch.utils.data.Dataset):
         filepaths = list(get_filepaths_recursively(data_path))
         filepaths.sort()
         num_samples = 0
-        for filepath in tqdm(filepaths, desc="Loading Wiki727 samples"):
+        for filepath in tqdm(filepaths, desc="Loading Wiki727k samples"):
             text, toc = load_from_filepath(filepath)
             if text is None:
                 continue

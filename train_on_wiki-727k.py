@@ -8,7 +8,7 @@ from unsloth import is_bfloat16_supported
 from trl import SFTTrainer
 
 from toc_llm.utils import get_experiment_id, set_seed, load_json_data
-from toc_llm.data.wiki_727 import load_datasets as load_datasets_wiki_727
+from toc_llm.data.wiki_727k import load_datasets as load_datasets_wiki_727k
 from toc_llm.training import (
     TrainingConfigBase, 
     determine_assistant_start_token, 
@@ -22,26 +22,26 @@ from toc_llm.eval import Metrics, merge_metrics
 
 
 @dataclass
-class TrainingConfigWiki727(TrainingConfigBase):
-    wiki_727_dir: str = ""  # Directory to wiki-727 dataset
-    wiki_727_max_tokens: int | None = None  # Currently not used, always set to 64000 max tokens
-    max_samples: int | None = None  # Number of samples to load from each wiki-727 set (train/dev/test)
+class TrainingConfigWiki727k(TrainingConfigBase):
+    wiki_727k_dir: str = ""  # Directory to wiki-727k dataset
+    wiki_727k_max_tokens: int | None = None  # Currently not used, always set to 64000 max tokens
+    max_samples: int | None = None  # Number of samples to load from each wiki-727k set (train/dev/test)
     run_test: bool = False  # Whether to run evaluation on the test set after training
 
 
-def run_training(config: TrainingConfigWiki727):
+def run_training(config: TrainingConfigWiki727k):
     set_seed(config.seed)
 
     tokenizer, model = load_tokenizer_n_model(config)
     approx_max_num_tokens_transcript = tokenizer.model_max_length - 7500  # reserve 7500 for prompt and toc
-    if config.wiki_727_max_tokens is not None:
-        max_input_text_tokens = min(config.wiki_727_max_tokens, approx_max_num_tokens_transcript)
+    if config.wiki_727k_max_tokens is not None:
+        max_input_text_tokens = min(config.wiki_727k_max_tokens, approx_max_num_tokens_transcript)
     else:
         max_input_text_tokens = None
 
-    # Load data from wiki-727
-    train_dataset, _, test_dataset = load_datasets_wiki_727(
-        dataset_root=config.wiki_727_dir,
+    # Load data from wiki-727k
+    train_dataset, _, test_dataset = load_datasets_wiki_727k(
+        dataset_root=config.wiki_727k_dir,
         model_id=config.model_id,
         max_seq_len=max_input_text_tokens,
         max_samples=config.max_samples,
@@ -133,13 +133,13 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--config-file", type=str, required=True,
-        help="Path to the training config file (JSON). Must include the path to the wiki-727 dataset."
+        help="Path to the training config file (JSON). Must include the path to the wiki-727k dataset."
     )
     args = parser.parse_args()
     assert os.path.isfile(args.config_file), "Provided config file does not exist."
     print(f"Using settings from config file: {args.config_file}", flush=True)
     custom_config = load_json_data(args.config_file)
-    config = TrainingConfigWiki727(**custom_config)
+    config = TrainingConfigWiki727k(**custom_config)
     run_training(config)
 
 

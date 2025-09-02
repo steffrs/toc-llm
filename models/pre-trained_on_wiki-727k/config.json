@@ -1,6 +1,6 @@
 {
   "seed": 0,
-  "wiki_727_max_tokens": null,
+  "wiki_727k_max_tokens": null,
   "max_samples": null,
   "batch_size": 1,
   "accumulate_steps": 16,

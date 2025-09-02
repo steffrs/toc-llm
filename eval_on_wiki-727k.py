@@ -4,17 +4,17 @@ import json
 from dataclasses import dataclass
 
 from toc_llm.utils import get_experiment_id, set_seed, load_json_data
-from toc_llm.data.wiki_727 import load_datasets as load_datasets_wiki_727
+from toc_llm.data.wiki_727k import load_datasets as load_datasets_wiki_727k
 from toc_llm.training import infer_on_test_set
 from toc_llm.inferrer import TocLlmInferrer, TocLlmInferrerConfig
 from toc_llm.eval import merge_metrics, bootstrap_metrics, aggregate_metrics_with_stddev
 
 
 @dataclass
-class EvalConfigWiki727:
-    wiki_727_dir: str = ""  # Directory to wiki-727 dataset
-    wiki_727_max_tokens: int | None = None  # Currently not used, always set to 64000 max tokens
-    max_samples: int | None = None  # Number of samples to load from  wiki-727 test set
+class EvalConfigWiki727k:
+    wiki_727k_dir: str = ""  # Directory to wiki-727k dataset
+    wiki_727k_max_tokens: int | None = None  # Currently not used, always set to 64000 max tokens
+    max_samples: int | None = None  # Number of samples to load from  wiki-727k test set
     model_id: str = "unsloth/Mistral-Nemo-Instruct-2407-bnb-4bit"  # Original model ID used for training
     checkpoint: str = ""  # Path to the checkpoint to evaluate
     output_dir: str = "./eval_output"
@@ -23,13 +23,13 @@ class EvalConfigWiki727:
     seed: int = 0
 
 
-def run_evaluation(config: EvalConfigWiki727):
+def run_evaluation(config: EvalConfigWiki727k):
     set_seed(config.seed)
 
-    _, _, test_dataset = load_datasets_wiki_727(
-        dataset_root=config.wiki_727_dir,
+    _, _, test_dataset = load_datasets_wiki_727k(
+        dataset_root=config.wiki_727k_dir,
         model_id=config.model_id,
-        max_seq_len=config.wiki_727_max_tokens,
+        max_seq_len=config.wiki_727k_max_tokens,
         max_samples=config.max_samples,
         load_train=False,
         load_dev=False,
@@ -75,13 +75,13 @@ def main():
     parser.add_argument(
         "--config-file", type=str, required=True,
         help="Path to the training config file (JSON). "
-             "Must include the path to the wiki-727 dataset and the checkpoint path."
+             "Must include the path to the wiki-727k dataset and the checkpoint path."
     )
     args = parser.parse_args()
     assert os.path.isfile(args.config_file), "Provided config file does not exist."
     print(f"Using settings from config file: {args.config_file}", flush=True)
     custom_config = load_json_data(args.config_file)
-    config = EvalConfigWiki727(**custom_config)
+    config = EvalConfigWiki727k(**custom_config)
     run_evaluation(config)
 
 
