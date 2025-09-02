@@ -6,3 +6,5 @@ scikit-learn==1.5.0
 segeval==2.0.11
 trl==0.14.0
 pydantic==2.7.4
+accelerate==1.7.0
+
